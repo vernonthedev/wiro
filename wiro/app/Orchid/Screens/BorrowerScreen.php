@@ -106,7 +106,7 @@ class BorrowerScreen extends Screen
             TD::make('created_at', "Added On")->sort(),
             TD::make('actions', 'Actions')
             ->render(function (Borrowers $borrower) {
-                return Link::make('View Payments')
+                return Link::make('View Loan History')
                     ->route('platform.borrower.history', $borrower->id);
             }),
 
