@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\AsSource;
 
 class Loan extends Model
 {
-    use HasFactory;
+    use HasFactory, AsSource;
 
     protected $fillable = ['borrower_id', 'loan_plan_id', 'loan_type_id', 'amount', 'status'];
 
     public function borrower()
     {
-        return $this->belongsTo(Borrower::class);
+        return $this->belongsTo(Borrowers::class);
     }
 
     public function loanPlan()
