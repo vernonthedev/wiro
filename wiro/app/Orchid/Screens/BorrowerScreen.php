@@ -64,159 +64,198 @@ class BorrowerScreen extends Screen
         
         return [ 
             Layout::table('borrowers', [
-            TD::make('first_name', "First Name"),
+            // Personal Information
+            TD::make('first_name', "First Name")->width('100px'),
+            TD::make('last_name', "Last Name")->width('100px'),
+            TD::make('gender', "Gender")->width('100px'),
+            TD::make('date_of_birth', "DOB")->width('100px'),
+            TD::make('whatsapp_number', "Whatsapp Number"),
+            TD::make('email', "Email"),
+
+            // // Residential Information
+            // TD::make('present_address', 'Present Address')->width('200px'),
+            // TD::make('address_type', 'Address Type')->width('150px'),
+            // TD::make('landmark', 'Landmark')->width('200px'),
+            // TD::make('district_of_residence', 'District of Residence')->width('200px'),
+            // TD::make('country', 'Country')->width('150px'),
+            // TD::make('years_in_residence', 'Years in Residence')->width('150px'),
+
+            // // Business/Employment Information
+            // TD::make('business_name', 'Business/Company Name')->width('200px'),
+            // TD::make('role', 'Role/Position')->width('150px'),
+            // TD::make('status', 'Employment Status')->width('150px'),
+            // TD::make('industry_of_business', 'Industry')->width('200px'),
+            // TD::make('business_address', 'Business Address')->width('200px'),
+            // TD::make('business_email', 'Business Email')->width('200px'),
+            // TD::make('business_contact_person', 'Business Contact Person')->width('200px'),
+            // TD::make('business_contact', 'Business Contact Number')->width('200px'),
+            // TD::make('business_district', 'Business District')->width('200px'),
+            // TD::make('business_country', 'Business Country')->width('150px'),
+
+            // // Next of Kin Information
+            // TD::make('next_of_kin_name', 'Next of Kin Name')->width('200px'),
+            // TD::make('next_of_kin_relationship', 'Relationship')->width('150px'),
+            // TD::make('next_of_kin_mobile', 'Next of Kin Mobile')->width('200px'),
+            // TD::make('next_of_kin_email', 'Next of Kin Email')->width('200px'),
+            // TD::make('next_of_kin_address', 'Next of Kin Address')->width('200px'),
+            // TD::make('next_of_kin_country', 'Next of Kin Country')->width('150px'),
+            // TD::make('next_of_kin_district', 'Next of Kin District')->width('200px'),
+            // TD::make('next_of_kin_city', 'Next of Kin City')->width('200px')->defaultHidden(),
+
             TD::make('created_at')->sort(),
 
         ]),
 
-            Layout::modal('borrowerModal', Layout::rows([
+        Layout::modal('borrowerModal', Layout::tabs([
+            'Personal Information' => Layout::rows([
                 Input::make('borrower.first_name')
                     ->title('First Name')
                     ->placeholder('Enter First Name'),
-                    // ->help('The name of the task to be created.'),
-
-                    Input::make('borrower.last_name')
-                    ->title('Full Name')
-                    ->placeholder('Enter Last name')
+        
+                Input::make('borrower.last_name')
+                    ->title('Last Name')
+                    ->placeholder('Enter Last Name')
                     ->required(),
-
-                    
-                    Input::make('borrower.gender')
+        
+                Input::make('borrower.gender')
                     ->title('Gender')
                     ->placeholder('Enter Gender')
                     ->required(),
-    
-    
+        
                 DateTimer::make('borrower.date_of_birth')
                     ->title('Date of Birth')
                     ->format('Y-m-d')
                     ->required(),
-    
+        
                 Input::make('borrower.whatsapp_number')
                     ->title('WhatsApp Number')
-                    ->placeholder('Enter WhatsApp number')
+                    ->placeholder('Enter WhatsApp Number')
                     ->mask('+999 999 999 999')
                     ->required(),
-    
+        
                 Input::make('borrower.email')
                     ->type('email')
                     ->title('Email Address')
-                    ->placeholder('Enter email address')
+                    ->placeholder('Enter Email Address')
                     ->required(),
-    
-                // Residential Information Section
+            ]),
+        
+            'Residential Information' => Layout::rows([
                 TextArea::make('borrower.present_address')
                     ->title('Present Address')
                     ->rows(3)
                     ->required(),
-    
+        
                 Select::make('borrower.address_type')
                     ->title('Address Type')
                     ->options([
                         'rented' => 'Rented',
-                        'owned' => 'Owned'
+                        'owned' => 'Owned',
                     ])
                     ->required(),
-    
+        
                 Input::make('borrower.landmark')
                     ->title('Landmark')
-                    ->placeholder('Enter nearby landmark'),
-    
+                    ->placeholder('Enter Nearby Landmark'),
+        
                 Input::make('borrower.district_of_residence')
                     ->title('District of Residence')
                     ->required(),
-    
+        
                 Input::make('borrower.country')
                     ->title('Country')
                     ->required(),
-    
+        
                 Input::make('borrower.years_in_residence')
                     ->type('number')
                     ->title('Years in Residence')
                     ->min(0)
                     ->required(),
-    
-                // Business/Employment Information Section
+            ]),
+        
+            'Business/Employment Information' => Layout::rows([
                 Input::make('borrower.business_name')
                     ->title('Business/Company Name')
                     ->required(),
-    
+        
                 Input::make('borrower.role')
                     ->title('Role/Position')
                     ->required(),
-    
+        
                 Select::make('borrower.status')
                     ->title('Employment Status')
                     ->options([
                         'employed' => 'Employed',
                         'business_owner' => 'Business Owner',
-                        'student' => 'Student'
+                        'student' => 'Student',
                     ])
                     ->required(),
-    
+        
                 Input::make('borrower.industry_of_business')
                     ->title('Industry')
-                    ->placeholder('Enter business industry'),
-    
+                    ->placeholder('Enter Business Industry'),
+        
                 TextArea::make('borrower.business_address')
                     ->title('Business Address')
                     ->rows(3),
-    
+        
                 Input::make('borrower.business_email')
                     ->type('email')
                     ->title('Business Email')
-                    ->placeholder('Enter business email'),
-    
+                    ->placeholder('Enter Business Email'),
+        
                 Input::make('borrower.business_contact_person')
                     ->title('Business Contact Person')
-                    ->placeholder('Enter contact person name'),
-    
+                    ->placeholder('Enter Contact Person Name'),
+        
                 Input::make('borrower.business_contact')
                     ->title('Business Contact Number')
                     ->mask('+999 999 999 999'),
-    
+        
                 Input::make('borrower.business_district')
                     ->title('Business District'),
-    
+        
                 Input::make('borrower.business_country')
                     ->title('Business Country'),
-    
-                // Next of Kin Information Section
+            ]),
+        
+            'Next of Kin Information' => Layout::rows([
                 Input::make('borrower.next_of_kin_name')
                     ->title('Next of Kin Name')
                     ->required(),
-    
+        
                 Input::make('borrower.next_of_kin_relationship')
                     ->title('Relationship')
                     ->required(),
-    
+        
                 Input::make('borrower.next_of_kin_mobile')
                     ->title('Next of Kin Mobile')
                     ->mask('+999 999 999 999')
                     ->required(),
-    
+        
                 Input::make('borrower.next_of_kin_email')
                     ->type('email')
                     ->title('Next of Kin Email')
-                    ->placeholder('Enter next of kin email'),
-    
+                    ->placeholder('Enter Next of Kin Email'),
+        
                 TextArea::make('borrower.next_of_kin_address')
                     ->title('Next of Kin Address')
                     ->rows(3)
                     ->required(),
-    
+        
                 Input::make('borrower.next_of_kin_country')
                     ->title('Next of Kin Country')
                     ->required(),
-    
+        
                 Input::make('borrower.next_of_kin_district')
                     ->title('Next of Kin District')
                     ->required(),
-    
+        
                 Input::make('borrower.next_of_kin_city')
                     ->title('Next of Kin City')
                     ->required(),
-            ]))
+            ]),
+        ]))
                 ->title('Create New Borrower')
                 ->applyButton('Add Customer'),
         ];
