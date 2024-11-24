@@ -8,6 +8,7 @@ use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Fields\DateTimer;
 use Orchid\Screen\Fields\Textarea;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\ModalToggle;
 use Illuminate\Http\Request;
 use App\Models\Borrowers;
@@ -102,7 +103,12 @@ class BorrowerScreen extends Screen
             // TD::make('next_of_kin_district', 'Next of Kin District')->width('200px'),
             // TD::make('next_of_kin_city', 'Next of Kin City')->width('200px')->defaultHidden(),
 
-            TD::make('created_at')->sort(),
+            TD::make('created_at', "Added On")->sort(),
+            TD::make('actions', 'Actions')
+            ->render(function (Borrowers $borrower) {
+                return Link::make('View')
+                    ->route('platform.borrowers', $borrower->id);
+            }),
 
         ]),
 
