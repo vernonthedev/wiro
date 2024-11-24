@@ -51,4 +51,10 @@ class Borrowers extends Model
         'next_of_kin_district',
         'next_of_kin_city',
     ];
+
+    // the borrower can have very many loans
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }
