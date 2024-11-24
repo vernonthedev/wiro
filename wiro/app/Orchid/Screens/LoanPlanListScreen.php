@@ -66,14 +66,14 @@ class LoanPlanListScreen extends Screen
                 TD::make('name', 'Plan Name'),
                 TD::make('interest_rate', 'Interest Rate (%)'),
                 TD::make('duration', 'Duration (Months)'),
-                // TD::make('actions', 'Actions')
-                //     ->render(function (LoanPlan $loanPlan) {
-                //         return Link::make('Edit')
-                //             ->route('platform.loan-plans.edit', $loanPlan->id);
-                //     }),
+                TD::make('actions', 'Actions')
+                    ->render(function (LoanPlan $loanPlan) {
+                        return Link::make('Edit')
+                            ->route('platform.loan.plans', $loanPlan->id);
+                    }),
             ]),
     
-            Layout::modal('loanPlanModal', Layout::rows([ // Wrap input fields in Layout::rows()
+            Layout::modal('loanPlanModal', Layout::rows([
                 Input::make('loan_plan.name')
                     ->title('Plan Name')
                     ->placeholder('Enter Loan Plan Name'),
