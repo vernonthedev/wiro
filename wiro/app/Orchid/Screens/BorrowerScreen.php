@@ -69,7 +69,10 @@ class BorrowerScreen extends Screen
             TD::make('first_name', "First Name")->width('100px'),
             TD::make('last_name', "Last Name")->width('100px'),
             TD::make('gender', "Gender")->width('100px'),
-            TD::make('date_of_birth', "DOB")->width('100px'),
+            TD::make('date_of_birth', 'Date Of Birth')
+            ->render(function ($row) {
+                return \Carbon\Carbon::parse($row->date_of_birth)->format('d M Y');
+            }),
             TD::make('whatsapp_number', "Whatsapp Number"),
             TD::make('email', "Email"),
 
