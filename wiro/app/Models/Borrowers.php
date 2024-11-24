@@ -7,10 +7,39 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use App\Models\Loan;
 use App\Models\Borrowers;
+use Laravel\Scout\Searchable;
+use App\Orchid\Presenters\BorrowerPresenter;
 
 class Borrowers extends Model
 {
-    use HasFactory, AsSource;
+    use HasFactory, AsSource, Searchable;
+
+    use Searchable;
+
+    public $asYouType = true;
+
+    public function presenter()
+    {
+        return new BorrowerPresenter($this);
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     */
+
+    public function toSearchableArray()
+    {
+        // return [
+        //     'first_name' => $this->first_name,
+        //     'last_name' => $this->last_name,
+        //     'email' => $this->email,
+        //     'business_name' => $this->business_name,
+        //     'next_of_kin_name' => $this->next_of_kin_name,
+        // ];
+        $array = $this->toArray();
+
+        return $array;
+    }
 
 
     protected $fillable = [

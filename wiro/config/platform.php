@@ -321,4 +321,9 @@ return [
 
     'provider' => \App\Orchid\PlatformProvider::class,
 
+    // Implement the search functionality
+    'search' => [
+        \App\Models\Borrowers::class,
+    ],
+
 ];
