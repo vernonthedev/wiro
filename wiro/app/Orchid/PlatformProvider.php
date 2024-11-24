@@ -39,6 +39,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->title('Navigation')
                 ->route(config('platform.index')),
 
+            Menu::make(__('Borrowers'))
+            ->icon('bs.people')
+            ->route('platform.borrowers'),
+
             Menu::make('Sample Screen')
                 ->icon('bs.collection')
                 ->route('platform.example')

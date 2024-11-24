@@ -19,6 +19,7 @@ use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
+use App\Orchid\Screens\BorrowerScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,3 +103,6 @@ Route::screen('/examples/charts', ExampleChartsScreen::class)->name('platform.ex
 Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
+
+//My new custom routes
+Route::screen('borrowers', BorrowerScreen::class)->name('platform.borrowers');
