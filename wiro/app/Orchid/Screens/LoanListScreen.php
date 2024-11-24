@@ -13,6 +13,7 @@ use Orchid\Screen\Actions\ModalToggle;
 use Illuminate\Http\Request;
 use App\Models\Loan;
 use App\Models\LoanPlan;
+use App\Models\LoanType;
 use App\Models\Borrowers;
 use Orchid\Support\Facades\Toast;
 use Orchid\Screen\TD;
@@ -30,6 +31,7 @@ class LoanListScreen extends Screen
             'loans' => Loan::latest()->get(),
             'borrowers'=> Borrowers::all(),
             'loan_plans'=> LoanPlan::all(),
+            'loan_types'=> LoanType::all(),
         ];
     }
 
@@ -71,6 +73,8 @@ class LoanListScreen extends Screen
                     ->render(fn($loan) => $loan->borrower->first_name . ' ' . $loan->borrower->last_name),
                 TD::make('amount', 'Loan Amount(UGX)'),
                 TD::make('status', 'Status'),
+                TD::make('loanType.name', 'Loan Type')
+                    ->render(fn($loan) => $loan->loanType->name ?? 'N/A'),
                 TD::make('actions', 'Actions')
                     ->render(function (Loan $loan) {
                         return Link::make('Details')->route('platform.loans', $loan->id);
@@ -89,6 +93,12 @@ class LoanListScreen extends Screen
                     ->title('Loan Plan')
                     ->options($this->query()['loan_plans']->pluck('name', 'id')->toArray()) //get the available loan plans
                     ->placeholder('Select Loan Plan')
+                    ->required(),
+
+                Select::make('loan.loan_type_id')
+                    ->fromModel(LoanType::class, 'name')
+                    ->title('Loan Type')
+                    ->empty('Select Loan Type')
                     ->required(),
 
                 Input::make('loan.amount')
@@ -123,6 +133,7 @@ class LoanListScreen extends Screen
     {
         $validated = $request->validate([
             'loan.borrower_id' => 'required|exists:borrowers,id', // Borrower selection validation
+            'loan.loan_type_id' => 'required|exists:loan_types,id',
             'loan.loan_plan_id' => 'required|exists:loan_plans,id', // Loan plan validation
             'loan.amount' => 'required|numeric|min:1',
             'loan.interest_rate' => 'required|numeric|min:0',
@@ -133,6 +144,7 @@ class LoanListScreen extends Screen
         Loan::create([
             'borrower_id' => $validated['loan']['borrower_id'],
             'loan_plan_id' => $validated['loan']['loan_plan_id'],
+            'loan_type_id' => $validated['loan']['loan_type_id'],
             'amount' => $validated['loan']['amount'],
             'interest_rate' => $validated['loan']['interest_rate'],
             'duration' => $validated['loan']['duration'],
