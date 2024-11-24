@@ -14,7 +14,7 @@ class Loan extends Model
 
     public function borrower()
     {
-        return $this->belongsTo(Borrowers::class);
+        return $this->belongsTo(Borrowers::class, 'borrower_id');
     }
 
     public function loanPlan()

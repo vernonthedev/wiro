@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
+use App\Models\Loan;
+use App\Models\Borrowers;
 
 class Borrowers extends Model
 {
@@ -55,6 +57,11 @@ class Borrowers extends Model
     // the borrower can have very many loans
     public function loans()
     {
-        return $this->hasMany(Loan::class);
+        return $this->hasMany(Loan::class, 'borrower_id');
+    }
+
+    public function borrower()
+    {
+        return $this->belongsTo(Borrowers::class, 'borrower_id');
     }
 }

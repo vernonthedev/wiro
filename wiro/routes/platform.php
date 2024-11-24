@@ -23,6 +23,9 @@ use App\Orchid\Screens\BorrowerScreen;
 use App\Orchid\Screens\LoanPlanListScreen;
 use App\Orchid\Screens\PaymentListScreen;
 use App\Orchid\Screens\LoanListScreen;
+use App\Orchid\Screens\BorrowerHistoryScreen;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -112,3 +115,4 @@ Route::screen('borrowers', BorrowerScreen::class)->name('platform.borrowers');
 Route::screen('loan-plans', LoanPlanListScreen::class)->name('platform.loan.plans');
 Route::screen('loans', LoanListScreen::class)->name('platform.loans');
 Route::screen('payments', PaymentListScreen::class)->name('platform.payments');
+Route::screen('borrower-history/{borrower}', BorrowerHistoryScreen::class)->name('platform.borrower.history');
