@@ -68,8 +68,10 @@ class PaymentListScreen extends Screen
             Layout::table('payments', [
                 TD::make('loan_id', 'Loan')
                     ->render(fn(Payment $payment) => $payment->loan->borrower->first_name . ' ' . $payment->loan->borrower->last_name),
-                TD::make('amount', 'Amount'),
-                TD::make('date', 'Payment Date'),
+                TD::make('amount', 'Amount(UGX)'),
+                TD::make('date', 'Payment Date')->render(function ($row) {
+                    return \Carbon\Carbon::parse($row->date_of_birth)->format('d M Y');
+                }),
                 TD::make('actions', 'Actions')
                     ->render(function (Payment $payment) {
                         return Link::make('Details')

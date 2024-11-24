@@ -69,7 +69,7 @@ class LoanListScreen extends Screen
             Layout::table('loans', [
                 TD::make('borrower.first_name', 'Borrower')
                     ->render(fn($loan) => $loan->borrower->first_name . ' ' . $loan->borrower->last_name),
-                TD::make('amount', 'Loan Amount'),
+                TD::make('amount', 'Loan Amount(UGX)'),
                 TD::make('status', 'Status'),
                 TD::make('actions', 'Actions')
                     ->render(function (Loan $loan) {

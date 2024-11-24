@@ -24,6 +24,7 @@ use App\Orchid\Screens\LoanPlanListScreen;
 use App\Orchid\Screens\PaymentListScreen;
 use App\Orchid\Screens\LoanListScreen;
 use App\Orchid\Screens\BorrowerHistoryScreen;
+use App\Orchid\Screens\LoanTypeScreen;
 
 
 
@@ -113,6 +114,7 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 //My new custom routes
 Route::screen('borrowers', BorrowerScreen::class)->name('platform.borrowers');
 Route::screen('loan-plans', LoanPlanListScreen::class)->name('platform.loan.plans');
+Route::screen('loan-types', LoanTypeScreen::class)->name('platform.loan.types');
 Route::screen('loans', LoanListScreen::class)->name('platform.loans');
 Route::screen('payments', PaymentListScreen::class)->name('platform.payments');
 Route::screen('borrower-history/{borrower}', BorrowerHistoryScreen::class)->name('platform.borrower.history');

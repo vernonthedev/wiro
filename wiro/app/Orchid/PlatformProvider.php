@@ -47,6 +47,10 @@ class PlatformProvider extends OrchidServiceProvider
             ->icon('bs.card-list')
             ->route('platform.loan.plans'),
 
+            Menu::make(__('Loan Types'))
+            ->icon('bs.card-list')
+            ->route('platform.loan.types'),
+
             Menu::make(__('Loans'))
             ->icon('bs.card-list')
             ->route('platform.loans'),
