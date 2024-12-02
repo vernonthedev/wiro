@@ -4,6 +4,7 @@ namespace App\Orchid\Presenters;
 use Orchid\Support\Presenter;
 use Orchid\Screen\Contracts\Searchable;
 use Laravel\Scout\Builder;
+use App\Models\Borrowers;
 
 class BorrowerPresenter extends Presenter implements Searchable
 {
@@ -45,7 +46,7 @@ class BorrowerPresenter extends Presenter implements Searchable
      */
     public function url(): string
     {
-        return url('/');
+        return url('/admin/customer-details/' . $this->entity->id);
     }
 
     /**
