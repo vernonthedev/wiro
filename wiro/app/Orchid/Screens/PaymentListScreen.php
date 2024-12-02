@@ -39,7 +39,7 @@ class PaymentListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'All Payments';
+        return 'All Current Payments';
     }
 
     /**

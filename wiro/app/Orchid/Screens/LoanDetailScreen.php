@@ -78,6 +78,7 @@ class LoanDetailScreen extends Screen
                     Sight::make('description', 'Description'),
                 ]),
                 'Payments Made' => Layout::table('loan.payments', [
+                    TD::make('id', 'ID.'),
                     TD::make('loan_id', 'Loan')
                         ->render(fn(Payment $payment) => $payment->loan->borrower->first_name . ' ' . $payment->loan->borrower->last_name),
                     TD::make('amount', 'Amount(UGX)'),

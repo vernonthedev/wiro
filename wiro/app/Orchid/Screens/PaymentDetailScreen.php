@@ -28,7 +28,7 @@ class PaymentDetailScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Payment Details';
+        return 'Current Payments';
     }
 
     /**
