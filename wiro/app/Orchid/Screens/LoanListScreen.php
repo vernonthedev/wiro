@@ -77,7 +77,7 @@ class LoanListScreen extends Screen
                     ->render(fn($loan) => $loan->loanType->name ?? 'N/A'),
                 TD::make('actions', 'Actions')
                     ->render(function (Loan $loan) {
-                        return Link::make('Details')->route('platform.loans', $loan->id);
+                        return Link::make('Details')->route('platform.loan.details', $loan->id);
                     }),
             ]),
 

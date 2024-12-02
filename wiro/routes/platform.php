@@ -12,6 +12,7 @@ use App\Orchid\Screens\Examples\ExampleGridScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\LoanDetailScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -118,5 +119,6 @@ Route::screen('customer-details/{borrower}', CustomerDetailScreen::class)->name(
 Route::screen('loan-plans', LoanPlanListScreen::class)->name('platform.loan.plans');
 Route::screen('loan-types', LoanTypeScreen::class)->name('platform.loan.types');
 Route::screen('loans', LoanListScreen::class)->name('platform.loans');
+Route::screen('loan-details/{loan}', LoanDetailScreen::class)->name('platform.loan.details');
 Route::screen('payments', PaymentListScreen::class)->name('platform.payments');
 Route::screen('borrower-history/{borrower}', BorrowerHistoryScreen::class)->name('platform.borrower.history');

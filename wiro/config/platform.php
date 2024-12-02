@@ -243,8 +243,8 @@ return [
      |
      */
 
-    'search' => [
-        // \App\Models\User::class
+   'search' => [
+        \App\Models\Borrowers::class,
     ],
 
     /*
@@ -321,9 +321,10 @@ return [
 
     'provider' => \App\Orchid\PlatformProvider::class,
 
-    // Implement the search functionality
-    'search' => [
-        \App\Models\Borrowers::class,
-    ],
+    // Add dark mode to admin
+    'dark_mode' => true,
+    
+
+
 
 ];

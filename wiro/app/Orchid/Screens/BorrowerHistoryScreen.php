@@ -38,14 +38,15 @@ class BorrowerHistoryScreen extends Screen
     {
         return [
             Layout::table('loans', [
+                TD::make('id', 'No.'),
                 TD::make('amount', 'Loan Amount'),
                 TD::make('status', 'Status'),
                 TD::make('created_at', 'Loan Date')
                     ->render(fn($loan) => $loan->created_at->format('d M Y')),
                 TD::make('actions', 'Actions')
                     ->render(function (Loan $loan) {
-                        return Link::make('Details')
-                            ->route('platform.loans', $loan->id);  // Link to loan details page
+                        return Link::make('View Loan Details')
+                            ->route('platform.loan.details', $loan->id);  // Link to loan details page
                     }),
             ]),
         ];
