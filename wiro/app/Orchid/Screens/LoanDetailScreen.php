@@ -6,9 +6,9 @@ use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Sight;
 use App\Models\Loan;
-use App\Models\LoanPlan;
-use App\Models\LoanType;
-use App\Models\Borrowers;
+use Orchid\Screen\TD;
+use App\Models\Payment;
+use Orchid\Screen\Actions\Link;
 
 class LoanDetailScreen extends Screen
 {
@@ -77,7 +77,14 @@ class LoanDetailScreen extends Screen
                     Sight::make('name', 'Type Name'),
                     Sight::make('description', 'Description'),
                 ]),
-                'Payments Made' => Layout::legend('', []),
+                'Payments Made' => Layout::table('loan.payments', [
+                    TD::make('loan_id', 'Loan')
+                        ->render(fn(Payment $payment) => $payment->loan->borrower->first_name . ' ' . $payment->loan->borrower->last_name),
+                    TD::make('amount', 'Amount(UGX)'),
+                    TD::make('date', 'Payment Date')->render(function ($row) {
+                        return \Carbon\Carbon::parse($row->date_of_birth)->format('d M Y');
+                    }),
+                    ]),
             ]),
         ];
     }
