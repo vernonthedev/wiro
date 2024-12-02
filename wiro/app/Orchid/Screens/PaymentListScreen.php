@@ -75,7 +75,7 @@ class PaymentListScreen extends Screen
                 TD::make('actions', 'Actions')
                     ->render(function (Payment $payment) {
                         return Link::make('Details')
-                            ->route('platform.payments', $payment->id);
+                            ->route('platform.loan.payment', $payment->id);
                     }),
             ]),
 
