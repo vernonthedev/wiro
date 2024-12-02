@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\CustomerDetailScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -113,6 +114,7 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 
 //My new custom routes
 Route::screen('borrowers', BorrowerScreen::class)->name('platform.borrowers');
+Route::screen('customer-details/{borrower}', CustomerDetailScreen::class)->name('platform.customer.details');
 Route::screen('loan-plans', LoanPlanListScreen::class)->name('platform.loan.plans');
 Route::screen('loan-types', LoanTypeScreen::class)->name('platform.loan.types');
 Route::screen('loans', LoanListScreen::class)->name('platform.loans');

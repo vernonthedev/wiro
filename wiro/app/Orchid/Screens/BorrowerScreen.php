@@ -106,11 +106,19 @@ class BorrowerScreen extends Screen
             // TD::make('next_of_kin_district', 'Next of Kin District')->width('200px'),
             // TD::make('next_of_kin_city', 'Next of Kin City')->width('200px')->defaultHidden(),
 
-            TD::make('created_at', "Added On")->sort(),
+            TD::make('created_at', "Added On")->sort()->render(function ($row) {
+                return \Carbon\Carbon::parse($row->date_of_birth)->format('d M Y');
+            }),
+            // You can get to view the loan history
             TD::make('actions', 'Actions')
             ->render(function (Borrowers $borrower) {
                 return Link::make('View Loan History')
                     ->route('platform.borrower.history', $borrower->id);
+            }),
+            // List all Customer Details
+            TD::make('Details','Details')->render(function (Borrowers $borrower) {
+                return Link::make('View All Details')
+                    ->route('platform.customer.details', $borrower->id);
             }),
 
         ]),
